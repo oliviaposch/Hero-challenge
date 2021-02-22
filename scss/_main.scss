@@ -1,0 +1,72 @@
+// ==========================================================================
+// Main
+// ==========================================================================
+
+// Layout
+.container {
+    padding: 0 em(15px) em(50px) em(15px);
+  }
+.articles{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+}
+
+.article{
+    @extend %card;
+    box-shadow: 0 2px 60px 0 rgba(0,0,0,0.2);
+    margin-bottom: 4em;
+    &__img{
+        min-height: 160px;
+        overflow: hidden;
+        @include mq('md'){
+            height: 399px;
+        }
+    }
+    &__content{
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        flex-flow: row wrap;
+        padding: em(28px);
+        &--date{
+            @extend %date;
+            @extend %date-box;
+            position: absolute;
+            top: -77px;
+            background: $white;
+            @include mq('md'){
+                position: relative;
+                top: initial;
+            }
+        }
+        &--detail{
+            width: 530px;
+        }
+        &--time{
+            position: relative;
+            @extend %date;
+            &::before{
+                width: 32px;
+                content: " ";
+                background-image: url(../assets/svg/clock.svg);
+                position: absolute;
+                height: 33px;
+            }
+            time:first-child{
+                padding-left: 3em;
+                @include mq('md'){
+                    padding-left: 2em;
+                }
+            }
+        }
+    }
+}
+
+// Icons
+.arrow-right-circle {
+    position: absolute;
+    right: 19px;
+    bottom: 19px;
+    @include btn-arrow-circle;
+}

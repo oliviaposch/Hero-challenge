@@ -1,0 +1,54 @@
+
+// ==========================================================================
+// Utilities
+// ==========================================================================
+
+// Import if Google Fonts URL is defined
+
+@if variable-exists(font-url--google) {
+	@import url($font-url--google);
+}
+
+// Calculate em values
+
+@function em($target, $context: $base__font-size) {
+	@return ($target / $context) * 1em;
+}
+
+// Mixins
+@mixin btn-arrow{
+    width: 20px;
+    height: 40px;
+}
+@mixin btn-arrow-circle{
+    text-align: center;
+    height: 40px;
+    width: 40px;
+    border-radius: $br--round;
+    border: 1px solid $black;
+    &:hover{
+        border: 1px solid $purple-majesty;
+    }
+    &__item{
+        @include btn-arrow;
+        &:hover{
+            stroke: $purple-majesty;
+        }
+    }
+}
+
+// BEM selectors
+
+@mixin m($modifier) {
+  &--#{$modifier} {
+    @content;
+  }
+}
+
+//media queries
+@mixin mq($break) {
+    $value: map-get($breakpoints, $break );
+    @media (min-width: $value) {
+        @content;
+    }
+}
